@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfólio - Cleyton Barbosa</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif;}
+body{margin:0;background:#0d0d1a;color:#ccc;scroll-behavior:smooth;overflow-x:hidden;position:relative;}
+a{text-decoration:none;color:inherit;}
+
+/* Canvas de partículas global */
+.particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+
+/* Hero */
+.hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;z-index:1;}
+#lavaLamp{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;filter:blur(60px) brightness(1.2);}
+.hero-content{position:relative;z-index:2;max-width:900px;}
+.hero-content h1{font-size:3rem;margin-bottom:1rem;text-shadow:0 0 10px #ffcc00,0 0 20px #ffcc00;}
+.hero-content h1 span{color:#ffcc00;}
+.hero-content p{font-size:1.2rem;margin-bottom:2rem;}
+.hero-content .btn{padding:1rem 2.5rem;background:#ffcc00;color:#0d0d1a;font-weight:700;border-radius:10px;box-shadow:0 0 15px #ffcc00;transition:0.3s;display:inline-flex;align-items:center;gap:0.6rem;}
+.hero-content .btn:hover{transform:scale(1.08);box-shadow:0 0 25px #ffcc00;}
+
+/* Sections */
+section{padding:4rem 2rem;max-width:1100px;margin:auto;opacity:0;transform:translateY(40px);transition:opacity 0.8s,transform 0.8s;position:relative;z-index:1;}
+section.show{opacity:1;transform:translateY(0);}
+h2{font-size:2.4rem;margin-bottom:2rem;text-align:center;color:#fff;position:relative;}
+h2::after{content:"";display:block;width:70px;height:3px;background:#ffcc00;margin:0.5rem auto 0;border-radius:2px;box-shadow:0 0 10px #ffcc00;}
+section p{max-width:800px;margin:auto;font-size:1.05rem;color:#ccc;text-align:center;}
+
+/* Projects Flip Cards */
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;}
+.project{perspective:1200px;display:flex;flex-direction:column;justify-content:center;align-items:center;}
+.project-inner{position:relative;width:100%;height:300px;transition:transform 0.8s;transform-style:preserve-3d;border-radius:12px;}
+.project:hover .project-inner{transform:rotateY(180deg);}
+.project-front,.project-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:12px;padding:2rem;box-shadow:0 0 20px rgba(255,204,0,0.2);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+.project-front{background:#1a1a2e;color:#fff;transition:0.3s;}
+.project-front h3{margin-bottom:1rem;color:#ffcc00;text-shadow:0 0 5px #ffcc00;}
+.project-front p{font-size:0.95rem;margin-bottom:1rem;}
+.project-back{background:#0d0d1a;color:#ffcc00;transform:rotateY(180deg);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:1.5rem;box-shadow:0 0 20px #ffcc00;}
+.project-back p{margin-bottom:1.5rem;}
+.project-back a{padding:0.8rem 1.8rem;background:#ffcc00;color:#0d0d1a;font-weight:700;border-radius:8px;display:inline-flex;align-items:center;gap:0.5rem;box-shadow:0 0 15px #ffcc00;transition:0.3s;margin-top:auto;}
+.project-back a:hover{transform:scale(1.05);box-shadow:0 0 25px #ffcc00;}
+
+/* Skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1.5rem;}
+.skill{background:#1a1a2e;padding:1rem;border-radius:12px;text-align:center;position:relative;overflow:hidden;}
+.skill h3{color:#ffcc00;text-shadow:0 0 5px #ffcc00;font-size:1.1rem;}
+
+/* Contact */
+form{display:flex;flex-direction:column;gap:1rem;max-width:500px;margin:auto;}
+input,textarea{padding:1rem;border-radius:8px;border:1px solid #333;background:#1a1a2e;color:#fff;transition:0.3s;box-shadow:0 0 5px #ffcc00;}
+input:focus,textarea:focus{border-color:#ffcc00;box-shadow:0 0 15px #ffcc00;outline:none;}
+button{padding:1rem;background:#ffcc00;color:#0d0d1a;border:none;border-radius:8px;cursor:pointer;font-weight:700;box-shadow:0 0 15px #ffcc00;transition:0.3s;}
+button:hover{transform:scale(1.05);box-shadow:0 0 25px #ffcc00;}
+
+/* Footer */
+footer{text-align:center;padding:2rem;background:#1a1a2e;color:#fff;margin-top:2rem;font-size:0.95rem;}
+
+/* Hero Animations */
+@keyframes gradientBG{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+
+/* Responsive */
+@media(max-width:600px){.hero-content h1{font-size:2rem;}.hero-content p{font-size:1rem;}h2{font-size:2rem;}}
+</style>
+</head>
+<body>
+
+<canvas class="particles"></canvas>
+
+<header>
+<div class="hero">
+<canvas id="lavaLamp"></canvas>
+<div class="hero-content">
+<h1>Oi, eu sou <span id="typed"></span></h1>
+<p>Desenvolvedor Full Stack Júnior | Transformando ideias em soluções reais</p>
+<a href="#projects" class="btn"><i class="fab fa-github"></i> Ver meus projetos</a>
+</div>
+</div>
+</header>
+
+<section id="about">
+<h2>Sobre Mim</h2>
+<p>Desenvolvedor em formação, apaixonado por transformar ideias em soluções reais e funcionais. Estudante de ADS, gosto de aprender na prática, criar projetos do zero e explorar tecnologias novas. Busco desafios que me fazem evoluir, integrando front-end, back-end e bancos de dados de forma estratégica e eficiente.</p>
+</section>
+
+<section id="projects">
+<h2>Projetos</h2>
+<div class="projects">
+<div class="project">
+<div class="project-inner">
+<div class="project-front">
+<h3>Projeto Setembro Amarelo</h3>
+<p>PHP, MySQL, Dompdf e frontend responsivo em HTML, CSS e JS.</p>
+</div>
+<div class="project-back">
+<p>Detalhes: Sistema de cadastro, PDFs e integração full-stack.</p>
+<a href="https://github.com/CleyGB-Dev/projeto_set_amarelo_estacio" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
+</div>
+</div>
+</div>
+
+<div class="project">
+<div class="project-inner">
+<div class="project-front">
+<h3>Projeto Pessoal de Animes</h3>
+<p>HTML, CSS, JS + integração com APIs públicas.</p>
+</div>
+<div class="project-back">
+<p>Detalhes: Organização de episódios e design responsivo.</p>
+<a href="https://github.com/CleyGB-Dev/Animes-CG" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
+</div>
+</div>
+</div>
+
+<div class="project">
+<div class="project-inner">
+<div class="project-front">
+<h3>Cadastro em C</h3>
+<p>GTK + Glade, app desktop portátil.</p>
+</div>
+<div class="project-back">
+<p>Detalhes: GUI intuitiva e multiplataforma.</p>
+<a href="https://github.com/CleyGB-Dev/cadastro_c_gui_portable" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section id="skills">
+<h2>Habilidades</h2>
+<div class="skills">
+<div class="skill"><h3>HTML5</h3></div>
+<div class="skill"><h3>CSS</h3></div>
+<div class="skill"><h3>JavaScript</h3></div>
+<div class="skill"><h3>React</h3></div>
+<div class="skill"><h3>React Native</h3></div>
+<div class="skill"><h3>PHP</h3></div>
+<div class="skill"><h3>MySQL</h3></div>
+<div class="skill"><h3>phpMyAdmin</h3></div>
+<div class="skill"><h3>Python</h3></div>
+<div class="skill"><h3>C / C++ / C#</h3></div>
+</div>
+</section>
+
+<section id="contact">
+<h2>Contato</h2>
+<form>
+<input type="text" placeholder="Seu nome" required>
+<input type="email" placeholder="Seu e-mail" required>
+<textarea placeholder="Mensagem" rows="5" required></textarea>
+<button type="submit">Enviar</button>
+</form>
+</section>
+
+<footer>
+&copy; 2025 Cleyton Barbosa. Todos os direitos reservados.
+</footer>
+
+<script>
+// Typing hero
+const typedText=["Cleyton Barbosa","Full Stack Developer"];let i=0,j=0,currentText="",isDeleting=false;function type(){const typedEl=document.getElementById("typed");if(i>=typedText.length)i=0;if(!isDeleting){currentText=typedText[i].substring(0,j+1);j++;typedEl.textContent=currentText;if(j===typedText[i].length){isDeleting=true;setTimeout(type,1000);return;}}else{currentText=typedText[i].substring(0,j-1);j--;typedEl.textContent=currentText;if(j===0){isDeleting=false;i++;setTimeout(type,300);return;}}setTimeout(type,150);}type();
+
+// Intersection Observer
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');}});},{threshold:0.2});document.querySelectorAll('section').forEach(el=>observer.observe(el));
+
+// Partículas de poeira
+const canvas=document.querySelector('.particles');const ctx=canvas.getContext('2d');let particlesArray=[];canvas.width=window.innerWidth;canvas.height=window.innerHeight;class Particle{constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.size=Math.random()*2+1;this.speedX=Math.random()*1-0.5;this.speedY=Math.random()*1-0.5;}update(){this.x+=this.speedX;this.y+=this.speedY;if(this.x<0||this.x>canvas.width)this.speedX=-this.speedX;if(this.y<0||this.y>canvas.height)this.speedY=-this.speedY;}draw(){ctx.fillStyle='rgba(255,204,0,0.7)';ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fill();}}function init(){particlesArray=[];for(let i=0;i<200;i++)particlesArray.push(new Particle());}function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);particlesArray.forEach(p=>{p.update();p.draw();});requestAnimationFrame(animate);}init();animate();window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;init();});
+
+// Lava Lamp topo
+const lavaCanvas = document.getElementById('lavaLamp');
+const lavaCtx = lavaCanvas.getContext('2d');
+lavaCanvas.width = window.innerWidth;
+lavaCanvas.height = window.innerHeight * 0.6;
+let lavaParticles = [];
+
+class LavaParticle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * lavaCanvas.width;
+    this.y = Math.random() * lavaCanvas.height;
+    this.radius = Math.random() * 40 + 20;
+    this.color = `hsla(${Math.random()*50},100%,50%,0.5)`;
+    this.speed = Math.random() * 0.5 + 0.2;
+    this.angle = Math.random() * Math.PI * 2;
+  }
+  update() {
+    this.angle += 0.01;
+    this.y -= this.speed;
+    this.x += Math.sin(this.angle) * 0.5;
+    if (this.y + this.radius < 0) this.reset(), this.y = lavaCanvas.height + this.radius;
+  }
+  draw() {
+    lavaCtx.beginPath();
+    let gradient = lavaCtx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.radius);
+    gradient.addColorStop(0,this.color);
+    gradient.addColorStop(1,'rgba(13,13,26,0)');
+    lavaCtx.fillStyle = gradient;
+    lavaCtx.arc(this.x,this.y,this.radius,0,Math.PI*2);
+    lavaCtx.fill();
+  }
+}
+
+function initLava() { lavaParticles = []; for(let i=0;i<20;i++) lavaParticles.push(new LavaParticle()); }
+function animateLava() { lavaCtx.clearRect(0,0,lavaCanvas.width,lavaCanvas.height); lavaParticles.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animateLava); }
+initLava();
+animateLava();
+window.addEventListener('resize',()=>{ lavaCanvas.width = window.innerWidth; lavaCanvas.height = window.innerHeight*0.6; initLava(); });
+
+</script>
+
+</body>
+</html>
