@@ -1,217 +1,353 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portfólio - Cleyton Barbosa</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-*{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif;}
-body{margin:0;background:#0d0d1a;color:#ccc;scroll-behavior:smooth;overflow-x:hidden;position:relative;}
-a{text-decoration:none;color:inherit;}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cleyton Barbosa | Full Stack Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0;font-family:'Inter',sans-serif;}
+        body{margin:0;background:#0d0d1a;color:#ccc;scroll-behavior:smooth;overflow-x:hidden;position:relative;}
+        a{text-decoration:none;color:inherit;}
 
-/* Canvas de partículas global */
-.particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
+        /* Canvas de partículas global */
+        .particles{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;}
 
-/* Hero */
-.hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;z-index:1;}
-#lavaLamp{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;filter:blur(60px) brightness(1.2);}
-.hero-content{position:relative;z-index:2;max-width:900px;}
-.hero-content h1{font-size:3rem;margin-bottom:1rem;text-shadow:0 0 10px #ffcc00,0 0 20px #ffcc00;}
-.hero-content h1 span{color:#ffcc00;}
-.hero-content p{font-size:1.2rem;margin-bottom:2rem;}
-.hero-content .btn{padding:1rem 2.5rem;background:#ffcc00;color:#0d0d1a;font-weight:700;border-radius:10px;box-shadow:0 0 15px #ffcc00;transition:0.3s;display:inline-flex;align-items:center;gap:0.6rem;}
-.hero-content .btn:hover{transform:scale(1.08);box-shadow:0 0 25px #ffcc00;}
+        /* Hero */
+        .hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;z-index:1;}
+        #lavaLamp{position:absolute;top:0;left:0;width:100%;height:100%;z-index:0;filter:blur(60px) brightness(1.2);}
+        .hero-content{position:relative;z-index:2;max-width:900px;padding: 0 1rem;}
+        .hero-content h1{font-size:3.5rem;margin-bottom:1rem;text-shadow:0 0 10px #ffcc00;}
+        .hero-content h1 span{color:#ffcc00;}
+        .hero-content p{font-size:1.4rem;margin-bottom:2rem;color: #fff; font-weight: 600;}
+        .hero-content .btn{padding:1rem 2.5rem;background:#ffcc00;color:#0d0d1a;font-weight:700;border-radius:10px;box-shadow:0 0 15px #ffcc00;transition:0.3s;display:inline-flex;align-items:center;gap:0.6rem;}
+        .hero-content .btn:hover{transform:scale(1.08);box-shadow:0 0-25px #ffcc00;}
 
-/* Sections */
-section{padding:4rem 2rem;max-width:1100px;margin:auto;opacity:0;transform:translateY(40px);transition:opacity 0.8s,transform 0.8s;position:relative;z-index:1;}
-section.show{opacity:1;transform:translateY(0);}
-h2{font-size:2.4rem;margin-bottom:2rem;text-align:center;color:#fff;position:relative;}
-h2::after{content:"";display:block;width:70px;height:3px;background:#ffcc00;margin:0.5rem auto 0;border-radius:2px;box-shadow:0 0 10px #ffcc00;}
-section p{max-width:800px;margin:auto;font-size:1.05rem;color:#ccc;text-align:center;}
+        /* Sections */
+        section{padding:5rem 2rem;max-width:1100px;margin:auto;opacity:0;transform:translateY(40px);transition:opacity 0.8s,transform 0.8s;position:relative;z-index:1;}
+        section.show{opacity:1;transform:translateY(0);}
+        h2{font-size:2.4rem;margin-bottom:2.5rem;text-align:center;color:#fff;position:relative;}
+        h2::after{content:"";display:block;width:70px;height:3px;background:#ffcc00;margin:0.5rem auto 0;border-radius:2px;box-shadow:0 0 10px #ffcc00;}
+        
+        .about-text{max-width:850px;margin:auto;font-size:1.1rem;line-height:1.8;text-align:justify;}
+        .about-text span{color: #ffcc00; font-weight: 600;}
 
-/* Projects Flip Cards */
-.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2rem;}
-.project{perspective:1200px;display:flex;flex-direction:column;justify-content:center;align-items:center;}
-.project-inner{position:relative;width:100%;height:300px;transition:transform 0.8s;transform-style:preserve-3d;border-radius:12px;}
-.project:hover .project-inner{transform:rotateY(180deg);}
-.project-front,.project-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:12px;padding:2rem;box-shadow:0 0 20px rgba(255,204,0,0.2);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
-.project-front{background:#1a1a2e;color:#fff;transition:0.3s;}
-.project-front h3{margin-bottom:1rem;color:#ffcc00;text-shadow:0 0 5px #ffcc00;}
-.project-front p{font-size:0.95rem;margin-bottom:1rem;}
-.project-back{background:#0d0d1a;color:#ffcc00;transform:rotateY(180deg);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:1.5rem;box-shadow:0 0 20px #ffcc00;}
-.project-back p{margin-bottom:1.5rem;}
-.project-back a{padding:0.8rem 1.8rem;background:#ffcc00;color:#0d0d1a;font-weight:700;border-radius:8px;display:inline-flex;align-items:center;gap:0.5rem;box-shadow:0 0 15px #ffcc00;transition:0.3s;margin-top:auto;}
-.project-back a:hover{transform:scale(1.05);box-shadow:0 0 25px #ffcc00;}
+        /* Projects Grid */
+        .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2.5rem;}
+        .project{perspective:1200px;}
+        .project-inner{position:relative;width:100%;height:320px;transition:transform 0.8s;transform-style:preserve-3d;border-radius:12px;cursor: pointer;}
+        .project:hover .project-inner{transform:rotateY(180deg);}
+        .project-front, .project-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:12px;padding:2rem;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;}
+        
+        .project-front{background:#1a1a2e; border: 1px solid #333;}
+        .project-front i {font-size: 3rem; color: #ffcc00; margin-bottom: 1rem;}
+        .project-front h3{margin-bottom:1rem;color:#ffcc00; font-size: 1.5rem;}
+        
+        .project-back{background:#1a1a2e; border: 2px solid #ffcc00; color:#fff; transform:rotateY(180deg);}
+        .project-back p{margin-bottom:1.5rem; font-size: 0.95rem;}
+        .project-back .tech-tags {margin-bottom: 1rem; color: #ffcc00; font-size: 0.85rem; font-weight: bold;}
+        .project-back a{padding:0.7rem 1.5rem;background:#ffcc00;color:#0d0d1a;font-weight:700;border-radius:8px;display:inline-flex;align-items:center;gap:0.5rem;transition:0.3s;}
 
-/* Skills */
-.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1.5rem;}
-.skill{background:#1a1a2e;padding:1rem;border-radius:12px;text-align:center;position:relative;overflow:hidden;}
-.skill h3{color:#ffcc00;text-shadow:0 0 5px #ffcc00;font-size:1.1rem;}
+        /* Skills */
+        .skills-container {display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;}
+        .skill-badge {background: #1a1a2e; border: 1px solid #333; padding: 0.8rem 1.5rem; border-radius: 50px; color: #fff; font-weight: 600; transition: 0.3s;}
+        .skill-badge:hover {border-color: #ffcc00; transform: translateY(-5px); color: #ffcc00;}
 
-/* Contact */
-form{display:flex;flex-direction:column;gap:1rem;max-width:500px;margin:auto;}
-input,textarea{padding:1rem;border-radius:8px;border:1px solid #333;background:#1a1a2e;color:#fff;transition:0.3s;box-shadow:0 0 5px #ffcc00;}
-input:focus,textarea:focus{border-color:#ffcc00;box-shadow:0 0 15px #ffcc00;outline:none;}
-button{padding:1rem;background:#ffcc00;color:#0d0d1a;border:none;border-radius:8px;cursor:pointer;font-weight:700;box-shadow:0 0 15px #ffcc00;transition:0.3s;}
-button:hover{transform:scale(1.05);box-shadow:0 0 25px #ffcc00;}
+        /* Contact & Social */
+        .social-links {display: flex; justify-content: center; gap: 2rem; margin-top: 2rem;}
+        .social-links button, .social-links a {
+            background: none; border: none; cursor: pointer;
+            font-size: 2.5rem; color: #ccc; transition: 0.3s; display: flex; align-items: center;
+        }
+        .social-links a:hover, .social-links button:hover {color: #ffcc00; transform: scale(1.2);}
 
-/* Footer */
-footer{text-align:center;padding:2rem;background:#1a1a2e;color:#fff;margin-top:2rem;font-size:0.95rem;}
+        /* Modal de Email */
+        .modal {
+            display: none; position: fixed; z-index: 999; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.8); backdrop-filter: blur(5px); align-items: center; justify-content: center;
+        }
+        .modal-content {
+            background: #1a1a2e; padding: 2.5rem; border-radius: 15px; border: 2px solid #ffcc00;
+            text-align: center; max-width: 400px; width: 90%; position: relative;
+        }
+        .modal-content h3 { color: #ffcc00; margin-bottom: 1rem; }
+        .email-display {
+            background: #0d0d1a; padding: 1rem; border-radius: 8px; color: #fff;
+            font-weight: 600; margin: 1rem 0; word-break: break-all; border: 1px solid #333;
+        }
+        .copy-btn {
+            background: #ffcc00; color: #0d0d1a; border: none; padding: 0.8rem 1.5rem;
+            border-radius: 8px; font-weight: 700; cursor: pointer; transition: 0.3s; width: 100%;
+        }
+        .copy-btn:hover { transform: scale(1.05); }
+        .close-modal { position: absolute; top: 10px; right: 15px; color: #666; cursor: pointer; font-size: 1.5rem; }
 
-/* Hero Animations */
-@keyframes gradientBG{0%{background-position:0% 50%;}50%{background-position:100% 50%;}100%{background-position:0% 50%;}}
+        footer{text-align:center;padding:3rem;background:#090914;color:#666;font-size:0.9rem;border-top: 1px solid #1a1a2e;}
 
-/* Responsive */
-@media(max-width:600px){.hero-content h1{font-size:2rem;}.hero-content p{font-size:1rem;}h2{font-size:2rem;}}
-</style>
+        @media(max-width:600px){
+            .hero-content h1{font-size:2.2rem;}
+            .hero-content p{font-size:1.1rem;}
+            section{padding:3rem 1.5rem;}
+        }
+    </style>
 </head>
 <body>
 
 <canvas class="particles"></canvas>
 
+<div id="emailModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <h3>Contato Direto</h3>
+        <p>Meu e-mail profissional:</p>
+        <div class="email-display" id="emailText">cleytongabrielbarbosa@gmail.com</div>
+        <button class="copy-btn" onclick="copyEmail()">Copiar E-mail</button>
+        <a href="mailto:cleytongabrielbarbosa@gmail.com" style="display:block; margin-top:1rem; font-size:0.9rem; color:#ffcc00; text-decoration:underline;">Ou abrir app de e-mail</a>
+    </div>
+</div>
+
 <header>
-<div class="hero">
-<canvas id="lavaLamp"></canvas>
-<div class="hero-content">
-<h1>Oi, eu sou <span id="typed"></span></h1>
-<p>Desenvolvedor Full Stack Júnior | Transformando ideias em soluções reais</p>
-<a href="#projects" class="btn"><i class="fab fa-github"></i> Ver meus projetos</a>
-</div>
-</div>
+    <div class="hero">
+        <canvas id="lavaLamp"></canvas>
+        <div class="hero-content">
+            <h1>Oi, eu sou <span id="typed"></span></h1>
+            <p>Desenvolvedor Full Stack | Node.js • PHP • React Native</p>
+            <a href="#projects" class="btn"><i class="fas fa-code"></i> Explorar Projetos</a>
+        </div>
+    </div>
 </header>
 
 <section id="about">
-<h2>Sobre Mim</h2>
-<p>Desenvolvedor em formação, apaixonado por transformar ideias em soluções reais e funcionais. Estudante de ADS, gosto de aprender na prática, criar projetos do zero e explorar tecnologias novas. Busco desafios que me fazem evoluir, integrando front-end, back-end e bancos de dados de forma estratégica e eficiente.</p>
+    <h2>Sobre Mim</h2>
+    <div class="about-text">
+        <p>
+            Sou desenvolvedor Full Stack com foco em <span>Backend</span>, atualmente cursando Análise e Desenvolvimento de Sistemas. 
+            Minha trajetória é marcada por 8 anos de experiência em ambientes de alta responsabilidade e disciplina, o que moldou minha capacidade de entrega e resolução de problemas.
+            <br><br>
+            Hoje, dedico-me a construir aplicações modernas utilizando o ecossistema <span>JavaScript (Node.js/React Native)</span> e <span>PHP</span>, sempre integrando com bancos de dados relacionais (PostgreSQL/MySQL) para criar soluções robustas e escaláveis.
+        </p>
+    </div>
 </section>
 
 <section id="projects">
-<h2>Projetos</h2>
-<div class="projects">
-<div class="project">
-<div class="project-inner">
-<div class="project-front">
-<h3>Projeto Setembro Amarelo</h3>
-<p>PHP, MySQL, Dompdf e frontend responsivo em HTML, CSS e JS.</p>
-</div>
-<div class="project-back">
-<p>Detalhes: Sistema de cadastro, PDFs e integração full-stack.</p>
-<a href="https://github.com/CleyGB-Dev/projeto_set_amarelo_estacio" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
-</div>
-</div>
+    <h2>Projetos em Destaque</h2>
+    <div class="projects">
+        <div class="project">
+            <div class="project-inner">
+                <div class="project-front">
+                    <i class="fas fa-wallet"></i>
+                    <h3>CG-Finance</h3>
+                    <p>Gestão Financeira & Renda Variável</p>
+                </div>
+                <div class="project-back">
+                    <p class="tech-tags">REACT NATIVE • TYPESCRIPT • POSTGRESQL</p>
+                    <p>App mobile completo para controle de fluxo de caixa e ativos financeiros com foco em performance.</p>
+                    <a href="https://github.com/CleyGB-Dev" target="_blank"><i class="fab fa-github"></i> Repositório</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-inner">
+                <div class="project-front">
+                    <i class="fas fa-notes-medical"></i>
+                    <h3>Setembro Amarelo</h3>
+                    <p>Sistema Full-Stack de Cadastro</p>
+                </div>
+                <div class="project-back">
+                    <p class="tech-tags">PHP • MYSQL • DOMPDF</p>
+                    <p>Sistema completo com geração de relatórios PDF e gerenciamento de banco de dados.</p>
+                    <a href="https://github.com/CleyGB-Dev/projeto_set_amarelo_estacio" target="_blank"><i class="fab fa-github"></i> Repositório</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-inner">
+                <div class="project-front">
+                    <i class="fas fa-utensils"></i>
+                    <h3>Açaí Delivery</h3>
+                    <p>Backend de Logística</p>
+                </div>
+                <div class="project-back">
+                    <p class="tech-tags">NODE.JS • EXPRESS • POSTGRESQL</p>
+                    <p>API RESTful para gerenciamento de pedidos, estoque e logística de entregas.</p>
+                    <a href="https://github.com/CleyGB-Dev" target="_blank"><i class="fab fa-github"></i> Repositório</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project">
+    <div class="project-inner">
+        <div class="project-front">
+            <i class="fas fa-shield-alt"></i>
+            <h3>Auth Security API</h3>
+            <p>Autenticação & RBAC</p>
+        </div>
+        <div class="project-back">
+            <p class="tech-tags">NODE.JS • JWT • BCRYPT • POSTGRES</p>
+            <p>API focada em segurança, implementando controle de acesso por níveis (RBAC), Refresh Tokens e proteção contra brute-force.</p>
+            <a href="https://github.com/CleyGB-Dev" target="_blank"><i class="fab fa-github"></i> Repositório</a>
+        </div>
+    </div>
 </div>
 
 <div class="project">
-<div class="project-inner">
-<div class="project-front">
-<h3>Projeto Pessoal de Animes</h3>
-<p>HTML, CSS, JS + integração com APIs públicas.</p>
-</div>
-<div class="project-back">
-<p>Detalhes: Organização de episódios e design responsivo.</p>
-<a href="https://github.com/CleyGB-Dev/Animes-CG" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
-</div>
-</div>
+    <div class="project-inner">
+        <div class="project-front">
+            <i class="fas fa-bell"></i>
+            <h3>Notify Service</h3>
+            <p>Microserviço Assíncrono</p>
+        </div>
+        <div class="project-back">
+            <p class="tech-tags">NODE.JS • WEBHOOKS • QUEUES</p>
+            <p>Serviço especializado no processamento assíncrono de notificações e integração entre sistemas via Webhooks.</p>
+            <a href="https://github.com/CleyGB-Dev" target="_blank"><i class="fab fa-github"></i> Repositório</a>
+        </div>
+    </div>
 </div>
 
 <div class="project">
-<div class="project-inner">
-<div class="project-front">
-<h3>Cadastro em C</h3>
-<p>GTK + Glade, app desktop portátil.</p>
+    <div class="project-inner">
+        <div class="project-front">
+            <i class="fas fa-calendar-check"></i>
+            <h3>Escala Pro</h3>
+            <p>Gestão de Escalas de Serviço</p>
+        </div>
+        <div class="project-back">
+            <p class="tech-tags">PHP • POSTGRESQL • DOMPDF</p>
+            <p>Sistema para gestão inteligente de plantões, com algoritmos de validação de descansos e geração automática de relatórios.</p>
+            <a href="https://github.com/CleyGB-Dev" target="_blank"><i class="fab fa-github"></i> Repositório</a>
+        </div>
+    </div>
 </div>
-<div class="project-back">
-<p>Detalhes: GUI intuitiva e multiplataforma.</p>
-<a href="https://github.com/CleyGB-Dev/cadastro_c_gui_portable" target="_blank"><i class="fab fa-github"></i> Ver no GitHub</a>
+
+        <div class="project">
+            <div class="project-inner">
+                <div class="project-front">
+                    <i class="fas fa-play-circle"></i>
+                    <h3>Animes-CG</h3>
+                    <p>Consumo de API & Frontend</p>
+                </div>
+                <div class="project-back">
+                    <p class="tech-tags">JAVASCRIPT • API REST • CSS3</p>
+                    <p>Aplicação voltada para o consumo de APIs públicas, lidando com requisições assíncronas.</p>
+                    <a href="https://github.com/CleyGB-Dev/Animes-CG" target="_blank"><i class="fab fa-github"></i> Repositório</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="project">
+            <div class="project-inner">
+                <div class="project-front">
+                    <i class="fas fa-desktop"></i>
+                    <h3>Desktop Cadastro</h3>
+                    <p>Sistemas Nativos em C</p>
+                </div>
+                <div class="project-back">
+                    <p class="tech-tags">Linguagem C • GTK • GLADE</p>
+                    <p>Demonstração de sólidos fundamentos em lógica de programação e interfaces gráficas nativas.</p>
+                    <a href="https://github.com/CleyGB-Dev/cadastro_c_gui_portable" target="_blank"><i class="fab fa-github"></i> Repositório</a>
+                </div>
+            </div>
+        </div>
+        <div class="project">
+    <div class="project-inner">
+        <div class="project-front">
+            <i class="fas fa-layer-group"></i>
+            <h3>Web Foundations</h3>
+            <p>Core da Engenharia Web</p>
+        </div>
+        <div class="project-back">
+            <p class="tech-tags">HTML5 • CSS3 • JAVASCRIPT VANILLA</p>
+            <p>Laboratório de fundamentos onde aplico conceitos avançados de layout, responsividade e manipulação do DOM sem bibliotecas externas.</p>
+            <a href="https://github.com/CleyGB-Dev/Web_Foundations" target="_blank"><i class="fab fa-github"></i> Repositório</a>
+        </div>
+    </div>
 </div>
-</div>
-</div>
-</div>
+    </div>
 </section>
 
 <section id="skills">
-<h2>Habilidades</h2>
-<div class="skills">
-<div class="skill"><h3>HTML5</h3></div>
-<div class="skill"><h3>CSS</h3></div>
-<div class="skill"><h3>JavaScript</h3></div>
-<div class="skill"><h3>React</h3></div>
-<div class="skill"><h3>React Native</h3></div>
-<div class="skill"><h3>PHP</h3></div>
-<div class="skill"><h3>MySQL</h3></div>
-<div class="skill"><h3>phpMyAdmin</h3></div>
-<div class="skill"><h3>Python</h3></div>
-<div class="skill"><h3>C / C++ / C#</h3></div>
-</div>
+    <h2>Minha Stack</h2>
+    <div class="skills-container">
+        <div class="skill-badge">Node.js</div>
+        <div class="skill-badge">JavaScript</div>
+        <div class="skill-badge">TypeScript</div>
+        <div class="skill-badge">React Native</div>
+        <div class="skill-badge">PHP</div>
+        <div class="skill-badge">PostgreSQL</div>
+        <div class="skill-badge">MySQL</div>
+        <div class="skill-badge">React.js</div>
+        <div class="skill-badge">Git & Docker</div>
+    </div>
 </section>
 
 <section id="contact">
-<h2>Contato</h2>
-<form>
-<input type="text" placeholder="Seu nome" required>
-<input type="email" placeholder="Seu e-mail" required>
-<textarea placeholder="Mensagem" rows="5" required></textarea>
-<button type="submit">Enviar</button>
-</form>
+    <h2>Vamos Conversar?</h2>
+    <p style="margin-bottom: 2rem;text-align: center;">Estou aberto a novas oportunidades e parcerias em projetos desafiadores.</p>
+    <div class="social-links">
+        <a href="https://github.com/CleyGB-Dev" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/cleyton-barbosa-b68898373/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <button onclick="openModal()" title="E-mail"><i class="fas fa-envelope"></i></button>
+    </div>
 </section>
 
 <footer>
-&copy; 2025 Cleyton Barbosa. Todos os direitos reservados.
+    &copy; 2026 Cleyton Barbosa • Duque de Caxias, RJ.
 </footer>
 
 <script>
-// Typing hero
-const typedText=["Cleyton Barbosa","Full Stack Developer"];let i=0,j=0,currentText="",isDeleting=false;function type(){const typedEl=document.getElementById("typed");if(i>=typedText.length)i=0;if(!isDeleting){currentText=typedText[i].substring(0,j+1);j++;typedEl.textContent=currentText;if(j===typedText[i].length){isDeleting=true;setTimeout(type,1000);return;}}else{currentText=typedText[i].substring(0,j-1);j--;typedEl.textContent=currentText;if(j===0){isDeleting=false;i++;setTimeout(type,300);return;}}setTimeout(type,150);}type();
-
-// Intersection Observer
-const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');}});},{threshold:0.2});document.querySelectorAll('section').forEach(el=>observer.observe(el));
-
-// Partículas de poeira
-const canvas=document.querySelector('.particles');const ctx=canvas.getContext('2d');let particlesArray=[];canvas.width=window.innerWidth;canvas.height=window.innerHeight;class Particle{constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.size=Math.random()*2+1;this.speedX=Math.random()*1-0.5;this.speedY=Math.random()*1-0.5;}update(){this.x+=this.speedX;this.y+=this.speedY;if(this.x<0||this.x>canvas.width)this.speedX=-this.speedX;if(this.y<0||this.y>canvas.height)this.speedY=-this.speedY;}draw(){ctx.fillStyle='rgba(255,204,0,0.7)';ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fill();}}function init(){particlesArray=[];for(let i=0;i<200;i++)particlesArray.push(new Particle());}function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);particlesArray.forEach(p=>{p.update();p.draw();});requestAnimationFrame(animate);}init();animate();window.addEventListener('resize',()=>{canvas.width=window.innerWidth;canvas.height=window.innerHeight;init();});
-
-// Lava Lamp topo
-const lavaCanvas = document.getElementById('lavaLamp');
-const lavaCtx = lavaCanvas.getContext('2d');
-lavaCanvas.width = window.innerWidth;
-lavaCanvas.height = window.innerHeight * 0.6;
-let lavaParticles = [];
-
-class LavaParticle {
-  constructor() { this.reset(); }
-  reset() {
-    this.x = Math.random() * lavaCanvas.width;
-    this.y = Math.random() * lavaCanvas.height;
-    this.radius = Math.random() * 40 + 20;
-    this.color = `hsla(${Math.random()*50},100%,50%,0.5)`;
-    this.speed = Math.random() * 0.5 + 0.2;
-    this.angle = Math.random() * Math.PI * 2;
-  }
-  update() {
-    this.angle += 0.01;
-    this.y -= this.speed;
-    this.x += Math.sin(this.angle) * 0.5;
-    if (this.y + this.radius < 0) this.reset(), this.y = lavaCanvas.height + this.radius;
-  }
-  draw() {
-    lavaCtx.beginPath();
-    let gradient = lavaCtx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.radius);
-    gradient.addColorStop(0,this.color);
-    gradient.addColorStop(1,'rgba(13,13,26,0)');
-    lavaCtx.fillStyle = gradient;
-    lavaCtx.arc(this.x,this.y,this.radius,0,Math.PI*2);
-    lavaCtx.fill();
-  }
+// Modal Functions
+function openModal() { document.getElementById('emailModal').style.display = 'flex'; }
+function closeModal() { document.getElementById('emailModal').style.display = 'none'; }
+function copyEmail() {
+    const email = document.getElementById('emailText').innerText;
+    navigator.clipboard.writeText(email).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.innerText = 'Copiado!';
+        btn.style.background = '#28a745';
+        btn.style.color = '#fff';
+        setTimeout(() => {
+            btn.innerText = 'Copiar E-mail';
+            btn.style.background = '#ffcc00';
+            btn.style.color = '#0d0d1a';
+        }, 2000);
+    });
+}
+window.onclick = function(event) {
+    const modal = document.getElementById('emailModal');
+    if (event.target == modal) closeModal();
 }
 
-function initLava() { lavaParticles = []; for(let i=0;i<20;i++) lavaParticles.push(new LavaParticle()); }
+// Typing hero
+const typedText=["Cleyton Barbosa","Full Stack Developer", "Backend Specialist"];let i=0,j=0,currentText="",isDeleting=false;function type(){const typedEl=document.getElementById("typed");if(!typedEl) return;if(i>=typedText.length)i=0;if(!isDeleting){currentText=typedText[i].substring(0,j+1);j++;typedEl.textContent=currentText;if(j===typedText[i].length){isDeleting=true;setTimeout(type,1500);return;}}else{currentText=typedText[i].substring(0,j-1);j--;typedEl.textContent=currentText;if(j===0){isDeleting=false;i++;setTimeout(type,300);return;}}setTimeout(type,100);}type();
+
+// Intersection Observer
+const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('show');}});},{threshold:0.1});document.querySelectorAll('section').forEach(el=>observer.observe(el));
+
+// Partículas
+const canvas=document.querySelector('.particles');const ctx=canvas.getContext('2d');let particlesArray=[];canvas.width=window.innerWidth;canvas.height=window.innerHeight;
+class Particle{constructor(){this.x=Math.random()*canvas.width;this.y=Math.random()*canvas.height;this.size=Math.random()*2+1;this.speedX=Math.random()*0.5-0.25;this.speedY=Math.random()*0.5-0.25;}update(){this.x+=this.speedX;this.y+=this.speedY;if(this.x<0||this.x>canvas.width)this.speedX=-this.speedX;if(this.y<0||this.y>canvas.height)this.speedY=-this.speedY;}draw(){ctx.fillStyle='rgba(255,204,0,0.4)';ctx.beginPath();ctx.arc(this.x,this.y,this.size,0,Math.PI*2);ctx.fill();}}
+function init(){particlesArray=[];for(let i=0;i<100;i++)particlesArray.push(new Particle());}
+function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);particlesArray.forEach(p=>{p.update();p.draw();});requestAnimationFrame(animate);}
+init();animate();
+
+// Lava Lamp
+const lavaCanvas = document.getElementById('lavaLamp');const lavaCtx = lavaCanvas.getContext('2d');
+function resizeLava(){lavaCanvas.width = window.innerWidth; lavaCanvas.height = window.innerHeight;}
+window.addEventListener('resize', resizeLava); resizeLava();
+let lavaParticles = [];
+class LavaParticle {
+    constructor() { this.reset(); }
+    reset() { this.x = Math.random() * lavaCanvas.width; this.y = Math.random() * lavaCanvas.height; this.radius = Math.random() * 100 + 50; this.color = `hsla(${35 + Math.random()*15}, 100%, 50%, 0.3)`; this.speed = Math.random() * 0.4 + 0.1; }
+    update() { this.y -= this.speed; if (this.y + this.radius < 0) this.y = lavaCanvas.height + this.radius; }
+    draw() { lavaCtx.beginPath(); let grad = lavaCtx.createRadialGradient(this.x,this.y,0,this.x,this.y,this.radius); grad.addColorStop(0,this.color); grad.addColorStop(1,'transparent'); lavaCtx.fillStyle = grad; lavaCtx.arc(this.x,this.y,this.radius,0,Math.PI*2); lavaCtx.fill(); }
+}
+for(let i=0;i<15;i++) lavaParticles.push(new LavaParticle());
 function animateLava() { lavaCtx.clearRect(0,0,lavaCanvas.width,lavaCanvas.height); lavaParticles.forEach(p=>{p.update();p.draw();}); requestAnimationFrame(animateLava); }
-initLava();
 animateLava();
-window.addEventListener('resize',()=>{ lavaCanvas.width = window.innerWidth; lavaCanvas.height = window.innerHeight*0.6; initLava(); });
-
 </script>
-
 </body>
 </html>
